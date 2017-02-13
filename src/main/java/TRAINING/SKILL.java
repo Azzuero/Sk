@@ -1,13 +1,26 @@
 package TRAINING;
 
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
 public class SKILL {
 
+    @Id
     private int ID;
 
     private String NAME;
 
     private int PARENT_ID;
+
+    @OneToMany(mappedBy = "skill", fetch = FetchType.LAZY)
+    @Fetch(FetchMode.SELECT)
+    private Set<SKILL_SET> skill_set = new HashSet<SKILL_SET>(0);
 
     public int getID() {
         return ID;
@@ -31,5 +44,13 @@ public class SKILL {
 
     public void setPARENT_ID(int PARENT_ID) {
         this.PARENT_ID = PARENT_ID;
+    }
+
+    public Set<SKILL_SET> getSkill_set() {
+        return skill_set;
+    }
+
+    public void setSkill_set(Set<SKILL_SET> skill_set) {
+        this.skill_set = skill_set;
     }
 }

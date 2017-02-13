@@ -1,12 +1,32 @@
 package TRAINING;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
 public class SKILL_SET {
-   private String CRMD;
+
+    @Id
+    private String CRMD;
+
     private int SKILL_ID;
+
     private Date ASSIGNET_DATE;
+
     private String ASSIGNEE_ID;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Fetch(FetchMode.SELECT)
+    @JoinColumn(name = "SKILL", nullable = false)
+    private SKILL skill;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Fetch(FetchMode.SELECT)
+    @JoinColumn(name = "EMPLOYEE", nullable = false)
+    private EMPLOYEE employee;
 
     public String getCRMD() {
         return CRMD;

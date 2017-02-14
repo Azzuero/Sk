@@ -1,11 +1,12 @@
 package TRAINING;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Time;
 
 @Entity
 @Table(name = "SKILL_SET")
-public class SKILL_SET {
+public class SKILL_SET implements Serializable {
     private Time assignedDate;
     private String assigneeId;
     private EMPLOYEE employeeByCrmd;
@@ -21,7 +22,6 @@ public class SKILL_SET {
         this.assignedDate = assignedDate;
     }
 
-    @Id
     @Column(name = "ASSIGNEE_ID", nullable = false, length = 10)
     public String getAssigneeId() {
         return assigneeId;
@@ -32,6 +32,7 @@ public class SKILL_SET {
     }
 
 
+    @Id
     @ManyToOne
     @JoinColumn(name = "CRMD", referencedColumnName = "CRMD")
     public EMPLOYEE getEmployeeByCrmd() {
@@ -42,6 +43,7 @@ public class SKILL_SET {
         this.employeeByCrmd = employeeByCrmd;
     }
 
+    @Id
     @ManyToOne
     @JoinColumn(name = "SKILL_ID", referencedColumnName = "ID")
     public SKILL getSkillBySkillId() {

@@ -38,9 +38,11 @@ public class CRUD {
             System.out.println("CRM: " + next.getCrmd());
             System.out.println("Ambient: " + next.getAmbient());
             System.out.println("Position: " + next.getPosition());
+            System.out.println("----------------------------");
+
 
         }
-        System.out.println("----------------------------");
+
 
         session.close();
     }

@@ -8,7 +8,7 @@ public class EMPLOYEE {
     private String position;
 
     @Id
-    @Column(name = "CRMD")
+    @Column(name = "CRMD", nullable = false, length = 10)
     public String getCrmd() {
         return crmd;
     }
@@ -17,7 +17,8 @@ public class EMPLOYEE {
         this.crmd = crmd;
     }
 
-    @Column(name = "AMBIENT")
+    @Basic
+    @Column(name = "AMBIENT", nullable = true, length = 20)
     public String getAmbient() {
         return ambient;
     }
@@ -26,7 +27,8 @@ public class EMPLOYEE {
         this.ambient = ambient;
     }
 
-    @Column(name = "POSITION")
+    @Basic
+    @Column(name = "POSITION", nullable = true, length = 20)
     public String getPosition() {
         return position;
     }
@@ -34,6 +36,5 @@ public class EMPLOYEE {
     public void setPosition(String position) {
         this.position = position;
     }
-
 
 }

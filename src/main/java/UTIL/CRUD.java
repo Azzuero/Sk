@@ -7,9 +7,6 @@ import org.hibernate.Session;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- * Created by crm0033 on 2/14/2017.
- */
 public class CRUD {
 
     public static void view() throws SQLException {

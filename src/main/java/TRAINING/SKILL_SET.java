@@ -9,38 +9,33 @@ import java.util.Date;
 @Entity
 public class SKILL_SET {
 
-    @Id
-    private String CRMD;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Fetch(FetchMode.SELECT)
+    @JoinColumn(name = "EMPLOYEE", nullable = false)
+    private EMPLOYEE CRMD;
 
-    private int SKILL_ID;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Fetch(FetchMode.SELECT)
+    @JoinColumn(name = "SKILL_ID", nullable = false)
+    private SKILL SKILL_ID;
 
     private Date ASSIGNET_DATE;
 
     private String ASSIGNEE_ID;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @Fetch(FetchMode.SELECT)
-    @JoinColumn(name = "SKILL", nullable = false)
-    private SKILL skill;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @Fetch(FetchMode.SELECT)
-    @JoinColumn(name = "EMPLOYEE", nullable = false)
-    private EMPLOYEE employee;
-
-    public String getCRMD() {
+    public EMPLOYEE getCRMD() {
         return CRMD;
     }
 
-    public void setCRMD(String CRMD) {
+    public void setCRMD(EMPLOYEE CRMD) {
         this.CRMD = CRMD;
     }
 
-    public int getSKILL_ID() {
+    public SKILL getSKILL_ID() {
         return SKILL_ID;
     }
 
-    public void setSKILL_ID(int SKILL_ID) {
+    public void setSKILL_ID(SKILL SKILL_ID) {
         this.SKILL_ID = SKILL_ID;
     }
 

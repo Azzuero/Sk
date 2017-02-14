@@ -14,7 +14,7 @@ public class EMPLOYEE {
     private String AMBIENT;
     private String POSITION;
 
-    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "CRMD", fetch = FetchType.LAZY)
     @Fetch(FetchMode.SELECT)
     private Set<SKILL_SET> skill_set = new HashSet<SKILL_SET>(0);
 

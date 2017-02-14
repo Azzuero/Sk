@@ -18,7 +18,7 @@ public class SKILL {
 
     private int PARENT_ID;
 
-    @OneToMany(mappedBy = "skill", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "SKILL_ID", fetch = FetchType.LAZY)
     @Fetch(FetchMode.SELECT)
     private Set<SKILL_SET> skill_set = new HashSet<SKILL_SET>(0);
 

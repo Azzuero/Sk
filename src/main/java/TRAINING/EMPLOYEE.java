@@ -1,11 +1,6 @@
 package TRAINING;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 @Entity
 public class EMPLOYEE {
     private String crmd;
@@ -13,7 +8,7 @@ public class EMPLOYEE {
     private String position;
 
     @Id
-    @Column(name = "CRMD", nullable = false, length = 10)
+    @Column(name = "CRMD")
     public String getCrmd() {
         return crmd;
     }
@@ -22,8 +17,7 @@ public class EMPLOYEE {
         this.crmd = crmd;
     }
 
-    @Basic
-    @Column(name = "AMBIENT", nullable = true, length = 20)
+    @Column(name = "AMBIENT")
     public String getAmbient() {
         return ambient;
     }
@@ -32,8 +26,7 @@ public class EMPLOYEE {
         this.ambient = ambient;
     }
 
-    @Basic
-    @Column(name = "POSITION", nullable = true, length = 20)
+    @Column(name = "POSITION")
     public String getPosition() {
         return position;
     }
@@ -41,5 +34,6 @@ public class EMPLOYEE {
     public void setPosition(String position) {
         this.position = position;
     }
+
 
 }

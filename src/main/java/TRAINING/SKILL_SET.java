@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Time;
 
 @Entity
-@Table(name = "SKILL_SET", schema = "JUNITTEST", catalog = "")
+@Table(name = "SKILL_SET")
 public class SKILL_SET {
     private Time assignedDate;
     private String assigneeId;

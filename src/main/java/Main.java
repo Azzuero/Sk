@@ -1,10 +1,9 @@
-import org.hibernate.Session;
+import UTIL.CRUD;
+
+import java.sql.SQLException;
 
 public class Main {
-    public static void main(String[] args) {
-        Session session = UTIL.HibernateUtil.getSessionFactory().openSession();
-        System.out.println("HUIZ");
-        session.close();
-        System.out.println("OK");
+    public static void main(String[] args) throws SQLException {
+        CRUD.viewEmpl();
     }
 }

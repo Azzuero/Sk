@@ -1,8 +1,10 @@
+import org.hibernate.Session;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Fuck second Commit");
-        System.out.println("Hi Bleas!");
-        System.out.println("Commit");
+        Session session = UTIL.HibernateUtil.getSessionFactory().openSession();
+        System.out.println("HUIZ");
+        session.close();
+        System.out.println("OK");
     }
 }

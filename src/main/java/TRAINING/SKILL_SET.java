@@ -1,21 +1,18 @@
 package TRAINING;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 import javax.persistence.*;
 import java.sql.Time;
-import java.util.Date;
 
 @Entity
 @Table(name = "SKILL_SET", schema = "JUNITTEST", catalog = "")
 public class SKILL_SET {
-
     private Time assignedDate;
     private String assigneeId;
     private EMPLOYEE employeeByCrmd;
     private SKILL skillBySkillId;
 
+    @Basic
+    @Column(name = "ASSIGNED_DATE", nullable = true)
     public Time getAssignedDate() {
         return assignedDate;
     }
@@ -24,6 +21,8 @@ public class SKILL_SET {
         this.assignedDate = assignedDate;
     }
 
+    @Id
+    @Column(name = "ASSIGNEE_ID", nullable = false, length = 10)
     public String getAssigneeId() {
         return assigneeId;
     }
@@ -31,6 +30,8 @@ public class SKILL_SET {
     public void setAssigneeId(String assigneeId) {
         this.assigneeId = assigneeId;
     }
+
+
     @ManyToOne
     @JoinColumn(name = "CRMD", referencedColumnName = "CRMD")
     public EMPLOYEE getEmployeeByCrmd() {

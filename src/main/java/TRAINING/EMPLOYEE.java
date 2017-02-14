@@ -7,47 +7,39 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 @Entity
-@Table(name = "EMPLOYEE", schema = "JUNITTEST", catalog = "")
 public class EMPLOYEE {
+    private String crmd;
+    private String ambient;
+    private String position;
 
-
-    private String CRMD;
-    private String AMBIENT;
-    private String POSITION;
-
-    @OneToMany(mappedBy = "CRMD", fetch = FetchType.LAZY)
-    @Fetch(FetchMode.SELECT)
-    private Set<SKILL_SET> skill_set = new HashSet<SKILL_SET>(0);
-
-    public String getCRMD() {
-        return CRMD;
+    @Id
+    @Column(name = "CRMD", nullable = false, length = 10)
+    public String getCrmd() {
+        return crmd;
     }
 
-    public void setCRMD(String CRMD) {
-        this.CRMD = CRMD;
+    public void setCrmd(String crmd) {
+        this.crmd = crmd;
     }
 
-    public String getAMBIENT() {
-        return AMBIENT;
+    @Basic
+    @Column(name = "AMBIENT", nullable = true, length = 20)
+    public String getAmbient() {
+        return ambient;
     }
 
-    public void setAMBIENT(String AMBIENT) {
-        this.AMBIENT = AMBIENT;
+    public void setAmbient(String ambient) {
+        this.ambient = ambient;
     }
 
-    public String getPOSITION() {
-        return POSITION;
+    @Basic
+    @Column(name = "POSITION", nullable = true, length = 20)
+    public String getPosition() {
+        return position;
     }
 
-    public void setPOSITION(String POSITION) {
-        this.POSITION = POSITION;
+    public void setPosition(String position) {
+        this.position = position;
     }
 
-    public Set<SKILL_SET> getSkill_set() {
-        return skill_set;
-    }
-
-    public void setSkill_set(Set<SKILL_SET> skill_set) {
-        this.skill_set = skill_set;
-    }
 }

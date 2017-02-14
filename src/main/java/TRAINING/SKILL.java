@@ -8,50 +8,41 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+
 @Entity
-@Table(name = "SKILL", schema = "JUNITTEST", catalog = "")
 public class SKILL {
+    private long id;
+    private String name;
+    private Long parentId;
 
     @Id
-    private int ID;
-
-    private String NAME;
-
-    private int PARENT_ID;
-
-    @OneToMany(mappedBy = "SKILL_ID", fetch = FetchType.LAZY)
-    @Fetch(FetchMode.SELECT)
-    private Set<SKILL_SET> skill_set = new HashSet<SKILL_SET>(0);
-
-    public int getID() {
-        return ID;
+    @Column(name = "ID", nullable = false, precision = 0)
+    public long getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public String getNAME() {
-        return NAME;
+    @Basic
+    @Column(name = "NAME", nullable = true, length = 20)
+    public String getName() {
+        return name;
     }
 
-    public void setNAME(String NAME) {
-        this.NAME = NAME;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getPARENT_ID() {
-        return PARENT_ID;
+    @Basic
+    @Column(name = "PARENT_ID", nullable = true, precision = 0)
+    public Long getParentId() {
+        return parentId;
     }
 
-    public void setPARENT_ID(int PARENT_ID) {
-        this.PARENT_ID = PARENT_ID;
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
     }
 
-    public Set<SKILL_SET> getSkill_set() {
-        return skill_set;
-    }
-
-    public void setSkill_set(Set<SKILL_SET> skill_set) {
-        this.skill_set = skill_set;
-    }
 }

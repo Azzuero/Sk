@@ -8,6 +8,7 @@ import java.sql.Time;
 import java.util.Date;
 
 @Entity
+@Table(name = "SKILL_SET", schema = "JUNITTEST", catalog = "")
 public class SKILL_SET {
 
     private Time assignedDate;

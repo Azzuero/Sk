@@ -6,7 +6,8 @@ import org.hibernate.annotations.FetchMode;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-
+@Entity
+@Table(name = "EMPLOYEE", schema = "JUNITTEST", catalog = "")
 public class EMPLOYEE {
 
 

@@ -1,14 +1,10 @@
 package TRAINING;
 
-import javax.persistence.*;
-@Entity
 public class EMPLOYEE {
     private String crmd;
     private String ambient;
     private String position;
 
-    @Id
-    @Column(name = "CRMD", nullable = false, length = 10)
     public String getCrmd() {
         return crmd;
     }
@@ -17,8 +13,6 @@ public class EMPLOYEE {
         this.crmd = crmd;
     }
 
-    @Basic
-    @Column(name = "AMBIENT", nullable = true, length = 20)
     public String getAmbient() {
         return ambient;
     }
@@ -27,8 +21,6 @@ public class EMPLOYEE {
         this.ambient = ambient;
     }
 
-    @Basic
-    @Column(name = "POSITION", nullable = true, length = 20)
     public String getPosition() {
         return position;
     }
@@ -37,4 +29,9 @@ public class EMPLOYEE {
         this.position = position;
     }
 
+    public EMPLOYEE(String crmd, String ambient, String position) {
+        this.crmd = crmd;
+        this.ambient = ambient;
+        this.position = position;
+    }
 }

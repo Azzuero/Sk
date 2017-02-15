@@ -1,32 +1,20 @@
 package TRAINING;
 
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
-
-
-@Entity
 public class SKILL {
-    private long id;
+    private int id;
     private String name;
-    private Long parentId;
+    private Integer parentId;
 
-    @Id
-    @Column(name = "ID", nullable = false, precision = 0)
-    public long getId() {
+
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "NAME", nullable = true, length = 20)
     public String getName() {
         return name;
     }
@@ -35,14 +23,18 @@ public class SKILL {
         this.name = name;
     }
 
-    @Basic
-    @Column(name = "PARENT_ID", nullable = true, precision = 0)
-    public Long getParentId() {
+    public int getParentId() {
         return parentId;
     }
 
-    public void setParentId(Long parentId) {
+    public void setParentId(int parentId) {
         this.parentId = parentId;
     }
 
+
+    public SKILL(int id, String name, Integer parentId) {
+        this.id = id;
+        this.name = name;
+        this.parentId = parentId;
+    }
 }

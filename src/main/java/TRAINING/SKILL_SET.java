@@ -1,40 +1,31 @@
 package TRAINING;
 
-import javax.persistence.*;
-import java.io.Serializable;
-import java.sql.Time;
+import java.sql.Date;
 
-@Entity
-@Table(name = "SKILL_SET")
-public class SKILL_SET implements Serializable {
-    private Time assignedDate;
-    private String assigneeId;
+
+public class SKILL_SET {
+    private Date assignedDate;
+    private EMPLOYEE assignee;
     private EMPLOYEE employeeByCrmd;
     private SKILL skillBySkillId;
 
-    @Basic
-    @Column(name = "ASSIGNED_DATE", nullable = true)
-    public Time getAssignedDate() {
+    public Date getAssignedDate() {
         return assignedDate;
     }
 
-    public void setAssignedDate(Time assignedDate) {
+    public void setAssignedDate(Date assignedDate) {
         this.assignedDate = assignedDate;
     }
 
-    @Column(name = "ASSIGNEE_ID", nullable = false, length = 10)
-    public String getAssigneeId() {
-        return assigneeId;
+    public EMPLOYEE getAssigneeId() {
+        return assignee;
     }
 
-    public void setAssigneeId(String assigneeId) {
-        this.assigneeId = assigneeId;
+    public void setAssigneeId(EMPLOYEE assigneeId) {
+        this.assignee = assigneeId;
     }
 
 
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "CRMD", referencedColumnName = "CRMD")
     public EMPLOYEE getEmployeeByCrmd() {
         return employeeByCrmd;
     }
@@ -43,14 +34,18 @@ public class SKILL_SET implements Serializable {
         this.employeeByCrmd = employeeByCrmd;
     }
 
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "SKILL_ID", referencedColumnName = "ID")
     public SKILL getSkillBySkillId() {
         return skillBySkillId;
     }
 
     public void setSkillBySkillId(SKILL skillBySkillId) {
+        this.skillBySkillId = skillBySkillId;
+    }
+
+    public SKILL_SET(Date assignedDate, EMPLOYEE assignee, EMPLOYEE employeeByCrmd, SKILL skillBySkillId) {
+        this.assignedDate = assignedDate;
+        this.assignee = assignee;
+        this.employeeByCrmd = employeeByCrmd;
         this.skillBySkillId = skillBySkillId;
     }
 }

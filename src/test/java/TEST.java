@@ -24,7 +24,7 @@ public class TEST {
     @Test
     public void lowerSkillAfter() {
 
-       assertEquals("lowerSkillAfter it's FUCK; Caused By:",true,utilites.lowerSkillAfter(Records.skill_set3.getAssignedDate(), Records.skill_sets()));
+       assertEquals("lowerSkillAfter it's FUCK; Caused By:",true,utilites.isLowerSkillAfter(Records.skill_set3.getAssignedDate(), Records.skill_sets()));
 
     }
 }

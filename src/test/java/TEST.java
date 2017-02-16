@@ -3,6 +3,7 @@ import UTIL.Utilites;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class TEST {
     Utilites utilites = new Utilites();
@@ -22,9 +23,16 @@ public class TEST {
     }
 
     @Test
-    public void lowerSkillAfter() {
+    public void isLowerSkillAfter() {
 
        assertEquals("lowerSkillAfter it's FUCK; Caused By:",true,utilites.isLowerSkillAfter(Records.skill_set3.getAssignedDate(), Records.skill_sets()));
+
+    }
+
+    @Test
+    public void lowerSkillAfter() {
+
+        assertNotEquals("lowerSkillAfter it's FUCK; Caused By:",Records.skill_sets(),utilites.lowerSkillAfter(Records.skill_sets(),5));
 
     }
 }

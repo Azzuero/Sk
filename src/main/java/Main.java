@@ -14,7 +14,7 @@ public class Main {
             System.err.println("Current lvl: "+next.getSkillBySkillId().getName());
         }
         System.out.println("=============");
-        for (SKILL_SET next: Utilites.daysPassedToLowerOneLevel(Records.skill_sets(),5)) {
+        for (SKILL_SET next: Utilites.lowerSkillAfter(Records.skill_sets(),5)) {
             System.err.println("New lvl: "+next.getSkillBySkillId().getName());
         }
     }

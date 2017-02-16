@@ -11,7 +11,7 @@ public class TEST {
     public void testAble() throws Exception {
 
 
-        assertEquals("isAbleToAttributeSkillFor it's FUCK; Caused By:",false, utilites.isAbleToAttributeSkillFor( Records.employee1,  Records.employee3,  Records.skill7, Records.skill7, Records.skill_set3, Records.skill_set2));
+        assertEquals("isAbleToAttributeSkillFor it's FUCK; Caused By:",false, utilites.isAbleToAttributeSkillFor( Records.employee1,  Records.employee3,  Records.skill7, Records.skill7, Records.skill_set1, Records.skill_set2));
     }
 
     @Test
@@ -24,7 +24,7 @@ public class TEST {
     @Test
     public void lowerSkillAfter() {
 
-       assertEquals("lowerSkillAfter it's FUCK; Caused By:",false,utilites.lowerSkillAfter(Records.skill_set3.getAssignedDate(), Records.skill_sets()));
+       assertEquals("lowerSkillAfter it's FUCK; Caused By:",true,utilites.lowerSkillAfter(Records.skill_set3.getAssignedDate(), Records.skill_sets()));
 
     }
 }

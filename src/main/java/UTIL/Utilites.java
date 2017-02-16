@@ -4,7 +4,8 @@ import TRAINING.EMPLOYEE;
 import TRAINING.SKILL;
 import TRAINING.SKILL_SET;
 
-import java.sql.Date;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 public class Utilites {
@@ -42,11 +43,9 @@ public class Utilites {
     }
     public static Boolean verifySkillLower(SKILL skill, SKILL_SET skill_set,String crmd){
         boolean b = true;
-       // if(skill_set.getEmployeeByCrmd().equals(crmd)){
-            if (Long.parseLong(skill_set.getSkillBySkillId().getName()) > Long.parseLong(skill.getName())){
-                b=false;
-            }
-        //}
+        if (Long.parseLong(skill_set.getSkillBySkillId().getName()) > Long.parseLong(skill.getName())){
+            b=false;
+        }
         return b;
     }
 
@@ -69,6 +68,45 @@ public class Utilites {
 
         return b;
     }
+
+        public static Set<SKILL_SET> daysPassedToLowerOneLevel(Set<SKILL_SET> skill_sets){
+            Set<SKILL_SET> skill_sets1 = new HashSet<SKILL_SET>(0);
+            int day = new org.joda.time.DateTime().getDayOfMonth();
+            int month = new org.joda.time.DateTime().getMonthOfYear();
+            int year = new org.joda.time.DateTime().getYear();
+            Date today = new Date(year, month, day);
+            System.out.println("D: " + day + "  M: " + month + "  Y: " + year);
+
+/*
+            int days = Days.daysBetween(skill_sets.getAssigneeDate(), new DateTime()).getDays();
+*/
+
+            for (SKILL_SET next: skill_sets) {
+
+                System.out.println(next.getAssignedDate() + " compare " + today);
+
+                if (next.getAssignedDate().compareTo(today) > 0) {
+
+                    System.out.println("Date1 is after Date2");
+                    long difference = next.getAssignedDate().getTime() - today.getTime();
+                    long differenceDates = difference / (24 * 60 * 60 * 1000);
+                    System.out.println("Difference: " + differenceDates);
+                    if(Long.parseLong(next.getSkillBySkillId().getName()) == 1){
+                        System.err.println("Nema: " + next.getSkillBySkillId().getName());
+                    }else if(){
+
+                    }
+                } else if (next.getAssignedDate().compareTo(today) < 0) {
+                    //System.out.println("Date1 is before Date2");
+
+                } else if (next.getAssignedDate().compareTo(today) == 0) {
+                   // System.out.println("Date1 is equal to Date2");
+                } else {
+                   // System.out.println("How to get here?");
+                }
+            }
+            return skill_sets;
+        }
     public static boolean isAbleToAttributeSkillFor(EMPLOYEE employee, EMPLOYEE assignee, SKILL emplSkill, SKILL assSkill, SKILL_SET emplSkillSet, SKILL_SET assSkillSet){
 
         boolean result = true;

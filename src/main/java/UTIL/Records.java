@@ -5,9 +5,7 @@ import TRAINING.SKILL;
 import TRAINING.SKILL_SET;
 
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class Records {
@@ -30,13 +28,17 @@ public class Records {
     public static SKILL skill11 = new SKILL(11, "1", 1);//Java
     public static SKILL skill12 = new SKILL(12, "2", 1);//Java
     public static SKILL skill13 = new SKILL(13, "3", 1);//Java
+    public static SKILL skill14 = new SKILL(14, "1", 4);//Bath
+    public static SKILL skill15 = new SKILL(15, "2", 4);//Bath
+    public static SKILL skill16 = new SKILL(16, "3", 4);//Bath
+    public static SKILL skill17 = new SKILL(17, "4", 4);//Bath
 
-    public static List<SKILL> skillList = new ArrayList<SKILL>();
+    //public static List<SKILL> skillList = new ArrayList<SKILL>();
 
 
-    public static SKILL_SET skill_set1 = new SKILL_SET(new Date(2017,02,19), Records.employee1, Records.employee3, Records.skill9 );
-    public static SKILL_SET skill_set2 = new SKILL_SET(new Date(2017,02,16), Records.employee3, Records.employee3, Records.skill7 );
-    public static SKILL_SET skill_set3 = new SKILL_SET(new Date(2017,02,11), Records.employee1, Records.employee3, Records.skill6 );
+    public static SKILL_SET skill_set1 = new SKILL_SET(new Date(2017,02,19), Records.employee1, Records.employee3, Records.skill5 );
+    public static SKILL_SET skill_set2 = new SKILL_SET(new Date(2017,02,16), Records.employee2, Records.employee3, Records.skill10 );
+    public static SKILL_SET skill_set3 = new SKILL_SET(new Date(2017,02,10), Records.employee4, Records.employee3, Records.skill6 );
 
     public static Set<SKILL_SET> skill_sets(){
         Set<SKILL_SET> skill_sets = new HashSet<SKILL_SET>();

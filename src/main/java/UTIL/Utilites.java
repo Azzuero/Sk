@@ -9,11 +9,11 @@ import java.util.Set;
 
 public class Utilites {
 
-    public static long toLong(String input){
-        return Long.parseLong(input);
-    }
+   public static long toLong(String input){
+       return Long.parseLong(input);
+   }
 
-    public static int getEmployeeRank(String position){
+   public static int getEmployeeRank(String position){
         int rank=0;
         switch (position) {
             case "JD":
@@ -36,19 +36,25 @@ public class Utilites {
 
    public static Boolean isSkillWiden(SKILL skill){
         boolean b = false;
-        if(skill.getParentId() == 2)
-            if (toLong(skill.getName()) <6 )
+        if(skill.getParentId() == 2){
+
+            if (toLong(skill.getName()) <= 6 && toLong(skill.getName()) > 0 )
                 b=true;
-        else if(skill.getParentId() == 1)
-           if (toLong(skill.getName()) < 3 )
+        }
+        else if(skill.getParentId() == 1){
+           if (toLong(skill.getName()) <= 3 && toLong(skill.getName()) > 0 )
                b=true;
+        }
+        else if(skill.getParentId() == 4){
+           if (toLong(skill.getName()) <= 3 && toLong(skill.getName()) > 0 )
+               b=true;
+        }
        return b;
     }
 
-   public static Boolean isSkillLower(SKILL skill, SKILL_SET skill_set,String crmd){
-        boolean b = true;
-        if (toLong(skill_set.getSkillBySkillId().getName()) > toLong(skill.getName()))
-            b=false;
+   public static Boolean isSkillLower(SKILL skill, SKILL_SET skill_set){
+        boolean b = false;
+        if (toLong(skill_set.getSkillBySkillId().getName()) > toLong(skill.getName())) b=true;
 
         return b;
     }
@@ -61,14 +67,6 @@ public class Utilites {
         return b;
    }
 
-   public static Boolean isLowerSkillAfter(Date date, Set<SKILL_SET> skill_sets){
-        boolean b = false;
-        for (SKILL_SET next: skill_sets)
-            if (date.compareTo(next.getAssignedDate()) > 0)
-                b = true;
-
-        return b;
-   }
 
    public static Set<SKILL_SET> lowerSkillAfter(Set<SKILL_SET> input_skill_sets, int daysPassedToLowerOneLevel){
 
@@ -100,7 +98,7 @@ public class Utilites {
        return output_skill_sets;
     }
 
-   public static boolean isAbleToAttributeSkillFor(EMPLOYEE employee, EMPLOYEE assignee, SKILL emplSkill, SKILL assSkill, SKILL_SET emplSkillSet, SKILL_SET assSkillSet){
+   public static boolean isAbleToAttributeSkillFor(EMPLOYEE employee, EMPLOYEE assignee, SKILL emplSkill, SKILL_SET emplSkillSet, SKILL_SET assSkillSet){
 
         boolean result = true;
 
@@ -125,18 +123,13 @@ public class Utilites {
             result = false;
         }
         //Lowered
-        else if (isSkillLower(emplSkill, emplSkillSet, employee.getCrmd()) == false){
+        else if (isSkillLower(emplSkill, emplSkillSet) == false){
             System.err.println("ERROR: Skill cannot be lowered!!!");
             result = false;
         }
         //Parent
         else if (isSkillParent(assSkillSet, emplSkillSet) == false){
             System.err.println("ERROR: Assignee must have higher Skill than employee!!!");
-            result = false;
-        }
-        //Date
-        else if (isLowerSkillAfter(emplSkillSet.getAssignedDate(), Records.skill_sets()) == false){
-            System.err.println("ERROR: Incorect Date!!!");
             result = false;
         }
 

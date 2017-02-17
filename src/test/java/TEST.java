@@ -78,10 +78,12 @@ public class TEST {
 //lowerSkillAfter(Set<SKILL_SET> input_skill_sets, int daysPassedToLowerOneLevel)
 
     @Test
-    public void beforeLowerSkillAfter(){
-        assertEquals("lowerSkillAfter() it's FUCK; Caused By:",Records.skill_sets(),utilites.lowerSkillAfter(Records.skill_sets(),5));
+    public void isLowerSkillAfter(){
+        assertEquals("lowerSkillAfter() it's FUCK; Caused By:",true,utilites.isLowerSkillAfter(Records.skill_sets()));
 
 
     }
+
+
 }
 

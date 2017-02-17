@@ -68,7 +68,11 @@ public class Utilites {
    }
 
 
-   public static Set<SKILL_SET> lowerSkillAfter(Set<SKILL_SET> input_skill_sets, int daysPassedToLowerOneLevel){
+
+
+
+
+   public static Set<SKILL_SET> lowerSkillAfter(Set<SKILL_SET> input_skill_sets,int daysPassedToLowerOneLevel){
 
        Set<SKILL_SET> output_skill_sets;
 
@@ -96,6 +100,19 @@ public class Utilites {
 
        output_skill_sets = input_skill_sets;
        return output_skill_sets;
+    }
+
+    public static boolean isLowerSkillAfter(Set<SKILL_SET> input_skill_set){
+       boolean b=true;
+       Set<SKILL_SET> temporary_skill_set=lowerSkillAfter(input_skill_set,5);
+        for (SKILL_SET next:input_skill_set) {
+            for (SKILL_SET next1: temporary_skill_set) {
+                if(next.getSkillBySkillId().getName().equals(next1.getSkillBySkillId().getName()))
+                    b=false;
+            }
+
+        }
+       return b;
     }
 
    public static boolean isAbleToAttributeSkillFor(EMPLOYEE employee, EMPLOYEE assignee, SKILL emplSkill, SKILL_SET emplSkillSet, SKILL_SET assSkillSet){

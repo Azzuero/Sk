@@ -1,7 +1,7 @@
-package TRAINING;
+package Employee;
 
 
-public class SKILL {
+public class Skill {
     private int id;
     private String name;
     private Integer parentId;
@@ -32,7 +32,7 @@ public class SKILL {
     }
 
 
-    public SKILL(int id, String name, Integer parentId) {
+    public Skill(int id, String name, Integer parentId) {
         this.id = id;
         this.name = name;
         this.parentId = parentId;

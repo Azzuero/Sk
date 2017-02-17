@@ -1,6 +1,6 @@
-package TRAINING;
+package Employee;
 
-public class EMPLOYEE {
+public class Employee {
     private String crmd;
     private String ambient;
     private String position;
@@ -29,7 +29,7 @@ public class EMPLOYEE {
         this.position = position;
     }
 
-    public EMPLOYEE(String crmd, String ambient, String position) {
+    public Employee(String crmd, String ambient, String position) {
         this.crmd = crmd;
         this.ambient = ambient;
         this.position = position;

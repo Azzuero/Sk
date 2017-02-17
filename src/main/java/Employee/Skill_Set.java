@@ -1,13 +1,13 @@
-package TRAINING;
+package Employee;
 
 import java.util.Date;
 
 
-public class SKILL_SET {
+public class Skill_Set {
     private Date assignedDate;
-    private EMPLOYEE assignee;
-    private EMPLOYEE employeeByCrmd;
-    private SKILL skillBySkillId;
+    private Employee assignee;
+    private Employee employeeByCrmd;
+    private Skill skillBySkillId;
 
     public Date getAssignedDate() {
         return assignedDate;
@@ -17,32 +17,32 @@ public class SKILL_SET {
         this.assignedDate = assignedDate;
     }
 
-    public EMPLOYEE getAssigneeId() {
+    public Employee getAssigneeId() {
         return assignee;
     }
 
-    public void setAssigneeId(EMPLOYEE assigneeId) {
+    public void setAssigneeId(Employee assigneeId) {
         this.assignee = assigneeId;
     }
 
 
-    public EMPLOYEE getEmployeeByCrmd() {
+    public Employee getEmployeeByCrmd() {
         return employeeByCrmd;
     }
 
-    public void setEmployeeByCrmd(EMPLOYEE employeeByCrmd) {
+    public void setEmployeeByCrmd(Employee employeeByCrmd) {
         this.employeeByCrmd = employeeByCrmd;
     }
 
-    public SKILL getSkillBySkillId() {
+    public Skill getSkillBySkillId() {
         return skillBySkillId;
     }
 
-    public void setSkillBySkillId(SKILL skillBySkillId) {
+    public void setSkillBySkillId(Skill skillBySkillId) {
         this.skillBySkillId = skillBySkillId;
     }
 
-    public SKILL_SET(Date assignedDate, EMPLOYEE assignee, EMPLOYEE employeeByCrmd, SKILL skillBySkillId) {
+    public Skill_Set(Date assignedDate, Employee assignee, Employee employeeByCrmd, Skill skillBySkillId) {
         this.assignedDate = assignedDate;
         this.assignee = assignee;
         this.employeeByCrmd = employeeByCrmd;

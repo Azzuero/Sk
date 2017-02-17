@@ -1,8 +1,9 @@
-package UTIL;
+package Util;
 
-import TRAINING.EMPLOYEE;
-import TRAINING.SKILL;
-import TRAINING.SKILL_SET;
+import Entity.Employee;
+import Entity.Skill;
+import Entity.Skill_Set;
+
 
 import java.util.Date;
 import java.util.Set;
@@ -34,7 +35,7 @@ public class Utilites {
         return rank;
     }
 
-   public static Boolean isSkillWiden(SKILL skill){
+   public static Boolean isSkillWiden(Skill skill){
         boolean b = false;
         if(skill.getParentId() == 2){
 
@@ -52,14 +53,14 @@ public class Utilites {
        return b;
     }
 
-   public static Boolean isSkillLower(SKILL skill, SKILL_SET skill_set){
+   public static Boolean isSkillLower(Skill skill, Skill_Set skill_set){
         boolean b = false;
         if (toLong(skill_set.getSkillBySkillId().getName()) > toLong(skill.getName())) b=true;
 
         return b;
     }
 
-   public static Boolean isSkillParent(SKILL_SET assSkill_set, SKILL_SET emplSkill_set){
+   public static Boolean isSkillParent(Skill_Set assSkill_set, Skill_Set emplSkill_set){
         boolean b = false;
         if(assSkill_set.getSkillBySkillId().getParentId() == emplSkill_set.getSkillBySkillId().getParentId())
             if (toLong(assSkill_set.getSkillBySkillId().getName()) > toLong(emplSkill_set.getSkillBySkillId().getName()))
@@ -72,13 +73,13 @@ public class Utilites {
 
 
 
-   public static Set<SKILL_SET> lowerSkillAfter(Set<SKILL_SET> input_skill_sets,int daysPassedToLowerOneLevel){
+   public static Set<Skill_Set> lowerSkillAfter(Set<Skill_Set> input_skill_sets,int daysPassedToLowerOneLevel){
 
-       Set<SKILL_SET> output_skill_sets;
+       Set<Skill_Set> output_skill_sets;
 
         Date today = new Date(new org.joda.time.DateTime().getYear(), new org.joda.time.DateTime().getMonthOfYear(), new org.joda.time.DateTime().getDayOfMonth());
 
-        for (SKILL_SET next: input_skill_sets) {
+        for (Skill_Set next: input_skill_sets) {
             //Date verifycation
             if (next.getAssignedDate().compareTo(today) < 0) {
 
@@ -102,11 +103,11 @@ public class Utilites {
        return output_skill_sets;
     }
 
-    public static boolean isLowerSkillAfter(Set<SKILL_SET> input_skill_set){
+    public static boolean isLowerSkillAfter(Set<Skill_Set> input_skill_set){
        boolean b=true;
-       Set<SKILL_SET> temporary_skill_set=lowerSkillAfter(input_skill_set,5);
-        for (SKILL_SET next:input_skill_set) {
-            for (SKILL_SET next1: temporary_skill_set) {
+       Set<Skill_Set> temporary_skill_set=lowerSkillAfter(input_skill_set,5);
+        for (Skill_Set next:input_skill_set) {
+            for (Skill_Set next1: temporary_skill_set) {
                 if(toLong(next.getSkillBySkillId().getName())==toLong(next1.getSkillBySkillId().getName())){
                     b=false;
                 }
@@ -116,7 +117,7 @@ public class Utilites {
        return b;
     }
 
-   public static boolean isAbleToAttributeSkillFor(EMPLOYEE employee, EMPLOYEE assignee, SKILL emplSkill, SKILL_SET emplSkillSet, SKILL_SET assSkillSet){
+   public static boolean isAbleToAttributeSkillFor(Employee employee, Employee assignee, Skill emplSkill, Skill_Set emplSkillSet, Skill_Set assSkillSet){
 
         boolean result = true;
 

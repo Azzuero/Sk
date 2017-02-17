@@ -1,6 +1,6 @@
-import TRAINING.SKILL_SET;
-import UTIL.Records;
-import UTIL.Utilites;
+import Entity.Skill_Set;
+import Util.Records;
+import Util.Utilites;
 
 import java.sql.SQLException;
 
@@ -12,11 +12,11 @@ public class Main {
         System.out.println("=============");
         Utilites.isSkillWiden(Records.skill16);
         System.out.println("=============");
-        for (SKILL_SET next: Records.skill_sets()) {
+        for (Skill_Set next: Records.skill_sets()) {
             System.out.println("Current lvl: "+next.getSkillBySkillId().getName());
         }
         System.out.println("=============");
-       for (SKILL_SET next: Utilites.lowerSkillAfter(Records.skill_sets(),5)) {
+       for (Skill_Set next: Utilites.lowerSkillAfter(Records.skill_sets(),5)) {
             System.out.println("New lvl: "+next.getSkillBySkillId().getName());
         }
 

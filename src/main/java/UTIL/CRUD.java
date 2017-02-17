@@ -1,6 +1,4 @@
 package Util;
-
-import Entity.Employee;
 import Entity.Employee;
 import Entity.Skill;
 import Entity.Skill_Set;
@@ -8,7 +6,6 @@ import org.hibernate.Session;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Set;
 
 public class Crud {
 
@@ -16,7 +13,7 @@ public class Crud {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
 
-        List<SKILL_SET> skill_setList = session.createQuery("from SKILL_SET ").list();
+        List<Skill_Set> skill_setList = session.createQuery("from SKILL_SET ").list();
 
 
         if (Utilites.getEmployeeRank(employee.getPosition()) >= Utilites.getEmployeeRank(assignee.getPosition())){
@@ -37,9 +34,9 @@ public class Crud {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
 
-        List<SKILL_SET> skill_setList = session.createQuery("from SKILL_SET ").list();
+        List<Skill_Set> skill_setList = session.createQuery("from SKILL_SET ").list();
         System.out.println("-------- SKILL SET --------");
-        for (SKILL_SET next:skill_setList) {
+        for (Skill_Set next:skill_setList) {
           /*  System.out.println("CRMD: " + next.getEmployeeByCrmd().getCrmd());
             System.out.println("Skill: " + next.getSkillBySkillId().getName());
             System.out.println("AssigneeId: " + next.getAssigneeId());
@@ -55,8 +52,8 @@ public class Crud {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
 
-        List<SKILL> skilsList = session.createQuery(" from SKILL ").list();
-        for (SKILL next:skilsList) {
+        List<Skill> skilsList = session.createQuery(" from SKILL ").list();
+        for (Skill next:skilsList) {
 
 
         }

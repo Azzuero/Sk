@@ -6,17 +6,10 @@
     <session-factory>
         <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
         <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
-
         <property name="hibernate.connection.username">VAADIN</property>
         <property name="hibernate.connection.password">2581230</property>
-        <property name="hibernate.default_schema">Azzuero</property>
         <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
         <property name="show_sql">true</property>
-        <mapping class="AutoVaadin.Mapare.Automobil"/>
-        <mapping class="AutoVaadin.Mapare.Combustibil"/>
-        <mapping class="AutoVaadin.Mapare.Culoare"/>
-        <mapping class="AutoVaadin.Mapare.Firma"/>
-        <mapping class="AutoVaadin.Mapare.Tara"/>
-        <mapping class="AutoVaadin.Mapare.Login"/>
+
     </session-factory>
 </hibernate-configuration>

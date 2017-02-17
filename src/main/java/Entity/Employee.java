@@ -1,4 +1,4 @@
-package Employee;
+package Entity;
 
 public class Employee {
     private String crmd;

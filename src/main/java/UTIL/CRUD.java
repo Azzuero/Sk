@@ -1,16 +1,18 @@
-package UTIL;
+package Util;
 
-import TRAINING.EMPLOYEE;
-import TRAINING.SKILL;
-import TRAINING.SKILL_SET;
+import Entity.Employee;
+import Entity.Employee;
+import Entity.Skill;
+import Entity.Skill_Set;
 import org.hibernate.Session;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Set;
 
-public class CRUD {
+public class Crud {
 
-    public static void isAbleToAttributeSkillFor(EMPLOYEE employee, EMPLOYEE assignee, SKILL skill){
+    public static void isAbleToAttributeSkillFor(Employee employee, Employee assignee,Skill skill){
 
         Session session = HibernateUtil.getSessionFactory().openSession();
 

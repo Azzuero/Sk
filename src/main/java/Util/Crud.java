@@ -2,6 +2,8 @@ package Util;
 import Entity.Employee;
 import Entity.Skill;
 import Entity.Skill_Set;
+import com.vaadin.data.Item;
+import com.vaadin.ui.ComboBox;
 import org.hibernate.Session;
 
 import java.sql.SQLException;
@@ -9,25 +11,29 @@ import java.util.List;
 
 public class Crud {
 
-    public static void isAbleToAttributeSkillFor(Employee employee, Employee assignee,Skill skill){
-
+    public static ComboBox getEmployee(){
+        ComboBox temporaryCombobox = new ComboBox("CRMD");
         Session session = HibernateUtil.getSessionFactory().openSession();
 
-        List<Skill_Set> skill_setList = session.createQuery("from SKILL_SET ").list();
-
-
-        if (Utilites.getEmployeeRank(employee.getPosition()) >= Utilites.getEmployeeRank(assignee.getPosition())){
-            System.err.println("ERROR: Position of assignee must be greater than position of employee!!!");
+        List<Employee> listEmployee = session.createCriteria(Employee.class).list();
+        for (Employee next:listEmployee ) {
+            temporaryCombobox.addItem(next.getCrmd());
         }
-        else if (!employee.getAmbient().equals(assignee.getAmbient())){
-            System.err.println("ERROR: Assignee and employee must be in the same ambient!!!");
-        }
-        else if (employee.getCrmd().equals(assignee.getCrmd())){
-            System.err.println("ERROR: Assignee and employee should be different persons!!!");
-        }
-
 
         session.close();
+        return temporaryCombobox;
+    }
+    public static ComboBox getSkill(){
+        ComboBox temporaryCombobox = new ComboBox("Skill");
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        List<Skill> listEmployee = session.createCriteria(Skill.class).list();
+        for (Skill next:listEmployee ) {
+            temporaryCombobox.addItem(next.getName());
+        }
+
+        session.close();
+        return temporaryCombobox;
     }
     public static void view() throws SQLException {
 

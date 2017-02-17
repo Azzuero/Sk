@@ -1,20 +1,25 @@
 package Entity;
 
+import javax.persistence.*;
 
+@Entity
 public class Skill {
-    private int id;
+    private long id;
     private String name;
-    private Integer parentId;
+    private Long parentId;
 
-
-    public int getId() {
+    @Id
+    @Column(name = "ID", nullable = false, precision = 0)
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "NAME", nullable = true, length = 20)
     public String getName() {
         return name;
     }
@@ -23,18 +28,15 @@ public class Skill {
         this.name = name;
     }
 
-    public int getParentId() {
+    @Basic
+    @Column(name = "PARENT_ID", nullable = true, precision = 0)
+    public Long getParentId() {
         return parentId;
     }
 
-    public void setParentId(int parentId) {
+    public void setParentId(Long parentId) {
         this.parentId = parentId;
     }
 
 
-    public Skill(int id, String name, Integer parentId) {
-        this.id = id;
-        this.name = name;
-        this.parentId = parentId;
-    }
 }

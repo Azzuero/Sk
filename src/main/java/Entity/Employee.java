@@ -4,11 +4,12 @@ import javax.persistence.*;
 
 @Entity
 public class Employee {
-    @Id
     private String crmd;
     private String ambient;
     private String position;
 
+    @Id
+    @Column(name = "CRMD", nullable = false, length = 10)
     public String getCrmd() {
         return crmd;
     }
@@ -17,6 +18,8 @@ public class Employee {
         this.crmd = crmd;
     }
 
+    @Basic
+    @Column(name = "AMBIENT", nullable = true, length = 20)
     public String getAmbient() {
         return ambient;
     }
@@ -25,6 +28,8 @@ public class Employee {
         this.ambient = ambient;
     }
 
+    @Basic
+    @Column(name = "POSITION", nullable = true, length = 20)
     public String getPosition() {
         return position;
     }
@@ -32,12 +37,6 @@ public class Employee {
     public void setPosition(String position) {
         this.position = position;
     }
-public Employee(){
 
-}
-    public Employee(String crmd, String ambient, String position) {
-        this.crmd = crmd;
-        this.ambient = ambient;
-        this.position = position;
-    }
+
 }

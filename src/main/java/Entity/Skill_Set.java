@@ -1,12 +1,18 @@
 package Entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.util.Date;
 
-
+@Entity
 public class Skill_Set {
     private Date assignedDate;
     private Employee assignee;
+    @Id
     private Employee employeeByCrmd;
+    @Id
     private Skill skillBySkillId;
 
     public Date getAssignedDate() {
@@ -26,6 +32,15 @@ public class Skill_Set {
     }
 
 
+    public Skill_Set(Date assignedDate, Employee assignee, Employee employeeByCrmd, Skill skillBySkillId) {
+        this.assignedDate = assignedDate;
+        this.assignee = assignee;
+        this.employeeByCrmd = employeeByCrmd;
+        this.skillBySkillId = skillBySkillId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "CRMD", referencedColumnName = "CRMD", nullable = false)
     public Employee getEmployeeByCrmd() {
         return employeeByCrmd;
     }
@@ -33,19 +48,13 @@ public class Skill_Set {
     public void setEmployeeByCrmd(Employee employeeByCrmd) {
         this.employeeByCrmd = employeeByCrmd;
     }
-
+    @ManyToOne
+    @JoinColumn(name = "SKILL_ID", referencedColumnName = "ID", nullable = false)
     public Skill getSkillBySkillId() {
         return skillBySkillId;
     }
 
     public void setSkillBySkillId(Skill skillBySkillId) {
-        this.skillBySkillId = skillBySkillId;
-    }
-
-    public Skill_Set(Date assignedDate, Employee assignee, Employee employeeByCrmd, Skill skillBySkillId) {
-        this.assignedDate = assignedDate;
-        this.assignee = assignee;
-        this.employeeByCrmd = employeeByCrmd;
         this.skillBySkillId = skillBySkillId;
     }
 }

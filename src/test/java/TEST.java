@@ -79,7 +79,7 @@ public class TEST {
 
     @Test
     public void isLowerSkillAfter(){
-        assertEquals("lowerSkillAfter() it's FUCK; Caused By:",true,utilites.isLowerSkillAfter(Records.skill_sets()));
+        assertEquals("lowerSkillAfter() it's FUCK; Caused By:",false,utilites.isLowerSkillAfter(Records.skill_sets()));
 
 
     }

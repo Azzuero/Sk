@@ -16,9 +16,11 @@ public class Main {
             System.out.println("Current lvl: "+next.getSkillBySkillId().getName());
         }
         System.out.println("=============");
-        //for (SKILL_SET next: Utilites.lowerSkillAfter(Records.skill_set1,5)) {
-       //     System.out.println("New lvl: "+next.getSkillBySkillId().getName());
-       // }
+       for (SKILL_SET next: Utilites.lowerSkillAfter(Records.skill_sets(),5)) {
+            System.out.println("New lvl: "+next.getSkillBySkillId().getName());
+        }
+
+        System.out.println("islowerSkill: " + Utilites.isLowerSkillAfter(Records.skill_sets()));
 
     }
 

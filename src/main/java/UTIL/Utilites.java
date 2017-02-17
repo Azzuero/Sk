@@ -107,8 +107,9 @@ public class Utilites {
        Set<SKILL_SET> temporary_skill_set=lowerSkillAfter(input_skill_set,5);
         for (SKILL_SET next:input_skill_set) {
             for (SKILL_SET next1: temporary_skill_set) {
-                if(next.getSkillBySkillId().getName().equals(next1.getSkillBySkillId().getName()))
+                if(toLong(next.getSkillBySkillId().getName())==toLong(next1.getSkillBySkillId().getName())){
                     b=false;
+                }
             }
 
         }

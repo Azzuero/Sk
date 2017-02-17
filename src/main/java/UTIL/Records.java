@@ -36,9 +36,9 @@ public class Records {
     //public static List<SKILL> skillList = new ArrayList<SKILL>();
 
 
-    public static SKILL_SET skill_set1 = new SKILL_SET(new Date(2017,02,19), Records.employee1, Records.employee3, Records.skill5 );
-    public static SKILL_SET skill_set2 = new SKILL_SET(new Date(2017,02,16), Records.employee2, Records.employee3, Records.skill10 );
-    public static SKILL_SET skill_set3 = new SKILL_SET(new Date(2017,02,10), Records.employee4, Records.employee3, Records.skill6 );
+    public static SKILL_SET skill_set1 = new SKILL_SET(new Date(2017,02,17), Records.employee1, Records.employee3, Records.skill5 );
+    public static SKILL_SET skill_set2 = new SKILL_SET(new Date(2017,02,17), Records.employee2, Records.employee3, Records.skill10 );
+    public static SKILL_SET skill_set3 = new SKILL_SET(new Date(2017,02,17), Records.employee4, Records.employee3, Records.skill6 );
 
     public static Set<SKILL_SET> skill_sets(){
         Set<SKILL_SET> skill_sets = new HashSet<SKILL_SET>();

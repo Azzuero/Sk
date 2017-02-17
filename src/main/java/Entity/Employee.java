@@ -1,6 +1,10 @@
 package Entity;
 
+import javax.persistence.*;
+
+@Entity
 public class Employee {
+    @Id
     private String crmd;
     private String ambient;
     private String position;
@@ -28,7 +32,9 @@ public class Employee {
     public void setPosition(String position) {
         this.position = position;
     }
+public Employee(){
 
+}
     public Employee(String crmd, String ambient, String position) {
         this.crmd = crmd;
         this.ambient = ambient;

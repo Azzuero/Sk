@@ -1,3 +1,5 @@
+import Entity.Employee;
+import Util.HibernateUtil;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinRequest;
@@ -6,8 +8,12 @@ import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.DateField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+import org.hibernate.Query;
+import org.hibernate.Session;
 
 import javax.servlet.annotation.WebServlet;
+import java.util.List;
+import java.util.Queue;
 
 /**
  * This UI is the application entry point. A UI may either represent a browser window
@@ -22,12 +28,19 @@ public class MyUI extends UI {
 //com
     @Override
     protected void init(VaadinRequest vaadinRequest) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List<Employee> list = session.createCriteria(Employee.class).list();
         VerticalLayout Principal_Page = new VerticalLayout();
         ComboBox combocrmd = new ComboBox("CRMD");
+        for(Employee next:list)
+        combocrmd.addItem(next.getCrmd());
         ComboBox comboskill = new ComboBox("Skill");
         ComboBox comboAsignee = new ComboBox("Asignee CRMD");
         DateField dateSkill = new DateField();
         Principal_Page.addComponents(combocrmd, comboskill, comboAsignee, dateSkill);
+        Principal_Page.setMargin(true);
+        Principal_Page.setSpacing(true);
+        session.close();
         setContent(Principal_Page);
     }
 

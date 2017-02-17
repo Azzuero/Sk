@@ -1,5 +1,5 @@
-import UTIL.Records;
-import UTIL.Utilites;
+import Util.Records;
+import Util.Utilites;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

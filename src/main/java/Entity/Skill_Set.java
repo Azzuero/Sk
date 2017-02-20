@@ -1,9 +1,9 @@
 package Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -39,8 +39,9 @@ public class Skill_Set {
         this.skillBySkillId = skillBySkillId;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "CRMD", referencedColumnName = "CRMD", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Fetch(FetchMode.SELECT)
+    @JoinColumn(name = "CRMD", nullable = false)
     public Employee getEmployeeByCrmd() {
         return employeeByCrmd;
     }
@@ -48,8 +49,10 @@ public class Skill_Set {
     public void setEmployeeByCrmd(Employee employeeByCrmd) {
         this.employeeByCrmd = employeeByCrmd;
     }
-    @ManyToOne
-    @JoinColumn(name = "SKILL_ID", referencedColumnName = "ID", nullable = false)
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Fetch(FetchMode.SELECT)
+    @JoinColumn(name = "SKILL_ID", nullable = false)
     public Skill getSkillBySkillId() {
         return skillBySkillId;
     }
@@ -57,4 +60,8 @@ public class Skill_Set {
     public void setSkillBySkillId(Skill skillBySkillId) {
         this.skillBySkillId = skillBySkillId;
     }
+
+    public Skill_Set() {
+    }
+    
 }

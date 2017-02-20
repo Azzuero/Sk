@@ -1,15 +1,20 @@
 package Entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 
 @Entity
 public class Skill {
+
     private long id;
     private String name;
     private Long parentId;
 
     @Id
-    @Column(name = "ID", nullable = false, precision = 0)
+    @OneToMany(mappedBy = "skillBySkillId", fetch = FetchType.LAZY)
+    @Fetch(FetchMode.SELECT)
     public long getId() {
         return id;
     }
@@ -38,5 +43,12 @@ public class Skill {
         this.parentId = parentId;
     }
 
+    public Skill() {
+    }
 
+    public Skill(long id, String name, Long parentId) {
+        this.id = id;
+        this.name = name;
+        this.parentId = parentId;
+    }
 }

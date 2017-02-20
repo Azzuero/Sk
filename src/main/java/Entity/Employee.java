@@ -1,5 +1,8 @@
 package Entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,7 +12,8 @@ public class Employee {
     private String position;
 
     @Id
-    @Column(name = "CRMD", nullable = false, length = 10)
+    @OneToMany(mappedBy = "employeeByCrmd", fetch = FetchType.LAZY)
+    @Fetch(FetchMode.SELECT)
     public String getCrmd() {
         return crmd;
     }
@@ -38,5 +42,12 @@ public class Employee {
         this.position = position;
     }
 
+    public Employee() {
+    }
 
+    public Employee(String crmd, String ambient, String position) {
+        this.crmd = crmd;
+        this.ambient = ambient;
+        this.position = position;
+    }
 }

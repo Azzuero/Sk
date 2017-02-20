@@ -2,7 +2,6 @@ package Util;
 import Entity.Employee;
 import Entity.Skill;
 import Entity.Skill_Set;
-import com.vaadin.data.Item;
 import com.vaadin.ui.ComboBox;
 import org.hibernate.Session;
 
@@ -23,13 +22,26 @@ public class Crud {
         session.close();
         return temporaryCombobox;
     }
-    public static ComboBox getSkill(){
+   /* public static ComboBox getSkill(){
         ComboBox temporaryCombobox = new ComboBox("Skill");
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         List<Skill> listEmployee = session.createCriteria(Skill.class).list();
         for (Skill next:listEmployee ) {
             temporaryCombobox.addItem(next.getName());
+        }
+
+        session.close();
+        return temporaryCombobox;
+    }*/
+
+    public static ComboBox getSkill(){
+        ComboBox temporaryCombobox = new ComboBox("Skill");
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        List<Skill_Set> listEmployee = session.createCriteria(Skill_Set.class).list();
+        for (Skill_Set next:listEmployee ) {
+            temporaryCombobox.addItem(next.getAssignedDate());
         }
 
         session.close();

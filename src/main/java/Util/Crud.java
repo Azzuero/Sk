@@ -1,4 +1,5 @@
 package Util;
+
 import Entity.Employee;
 import Entity.Skill;
 import Entity.Skill_Set;
@@ -7,7 +8,10 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Crud {
 
@@ -85,8 +89,8 @@ public class Crud {
 
     public static List<Employee> getAssignee(String CRMD) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Query query = session.createQuery("from Employee where CRMD =:a");
-        query.setParameter("a", CRMD);
+        Query query = session.createQuery("from Employee where CRMD =:crmd");
+        query.setParameter("crmd", CRMD);
         List<Employee> getemployeebycrmd = query.list();
         List<Employee> getallemployee = session.createQuery("from Employee").list();
         List<Employee> employees = new ArrayList<Employee>(0);
@@ -130,20 +134,23 @@ public class Crud {
         }
         return listString;
     }*/
-    public static List<Skill> getSkills(){
+    public static List<String> getSkillParent() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         List<Skill> inputSkills = session.createQuery("from Skill").list();
         List<Skill> input1Skills = session.createQuery("from Skill").list();
-        List<Skill> outputSkils = new ArrayList<Skill>(0);
+        List<String> outputSkils = new ArrayList<String>(0);
         for (Skill next: inputSkills)
             for(Skill next1:input1Skills){
             if(numberOrNot(next.getName()))
                 if(next.getParentId()==next1.getId()){
-                outputSkils.add(next1);
-                System.out.println(next1.getName());
+                    outputSkils.add(next1.getName());
+                    // System.out.println(next1.getName());
             }
         }
-
+        Set<String> hs = new HashSet<String>();
+        hs.addAll(outputSkils);
+        outputSkils.clear();
+        outputSkils.addAll(hs);
         session.close();
         return outputSkils;
     }
@@ -159,6 +166,18 @@ public class Crud {
             return false;
         }
         return true;
+    }
+
+    public static List<Skill> getSkillLevel(String parent) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Query query = session.createQuery("from Skill where name =:parent");
+        query.setParameter("parent", parent);
+        List<Skill> parentList = query.list();
+        Query query1 = session.createQuery("from Skill where parentId =:par");
+        query1.setParameter("par", parentList.get(0).getId());
+        List<Skill> outputList = new ArrayList<>(0);
+        outputList.addAll(query1.list());
+        return outputList;
     }
 }
 

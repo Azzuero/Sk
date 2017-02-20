@@ -1,4 +1,5 @@
 import Entity.Employee;
+import Entity.Skill;
 import Util.Crud;
 import Util.HibernateUtil;
 import com.vaadin.annotations.Theme;
@@ -34,22 +35,36 @@ public class MyUI extends UI {
         VerticalLayout Principal_Page = new VerticalLayout();
         //cpp
         ComboBox comboAsignee = new ComboBox("Asignee CRMD");
+        comboAsignee.setNullSelectionAllowed(false);
         DateField dateSkill = new DateField();
         ComboBox Employee = Crud.getEmployee();
+        Employee.setNullSelectionAllowed(false);
         Employee.addValueChangeListener(e -> {
             comboAsignee.removeAllItems();
             for (Employee next : Crud.getAssignee(String.valueOf(e.getProperty().getValue())))
                 comboAsignee.addItems(next.getCrmd());
 
         });
-        ComboBox comboBox = new ComboBox("SKILLLLLLL");
-        //comboBox.addItems(Crud.getSkill1());
-        Principal_Page.addComponents(Employee, Crud.getSkill(), comboAsignee, dateSkill, comboBox);
+        ComboBox comboParent = new ComboBox("Skill Parent");
+        comboParent.setNullSelectionAllowed(false);
+        comboParent.addItems(Crud.getSkillParent());
+        ComboBox combolvl = new ComboBox("Skill LVL");
+        combolvl.setNullSelectionAllowed(false);
+        comboParent.addValueChangeListener(e -> {
+            combolvl.removeAllItems();
+            for (Skill next : Crud.getSkillLevel(String.valueOf(e.getProperty().getValue()))) {
+                combolvl.addItems(next.getName());
+                System.out.println(next.getName());
+            }
+
+        });
+
+        Principal_Page.addComponents(Employee, comboAsignee, dateSkill, comboParent, combolvl);
         Principal_Page.setMargin(true);
         Principal_Page.setSpacing(true);
         session.close();
         setContent(Principal_Page);
-        Crud.getSkills();
+        // Crud.getSkills();
     }
 
 

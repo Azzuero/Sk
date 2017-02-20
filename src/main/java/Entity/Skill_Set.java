@@ -1,47 +1,71 @@
 package Entity;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Time;
 
 @Entity
+@Table(name = "SKILL_SET", schema = "JUNITTEST", catalog = "")
 public class Skill_Set {
-    private Date assignedDate;
-    private Employee assignee;
-    @Id
+    private Time assignedDate;
+    private String assigneeId;
+    private long id;
     private Employee employeeByCrmd;
-    @Id
     private Skill skillBySkillId;
 
-    public Date getAssignedDate() {
+    @Basic
+    @Column(name = "ASSIGNED_DATE", nullable = true)
+    public Time getAssignedDate() {
         return assignedDate;
     }
 
-    public void setAssignedDate(Date assignedDate) {
+    public void setAssignedDate(Time assignedDate) {
         this.assignedDate = assignedDate;
     }
 
-    public Employee getAssigneeId() {
-        return assignee;
+    @Basic
+    @Column(name = "ASSIGNEE_ID", nullable = true, length = 10)
+    public String getAssigneeId() {
+        return assigneeId;
     }
 
-    public void setAssigneeId(Employee assigneeId) {
-        this.assignee = assigneeId;
+    public void setAssigneeId(String assigneeId) {
+        this.assigneeId = assigneeId;
     }
 
-
-    public Skill_Set(Date assignedDate, Employee assignee, Employee employeeByCrmd, Skill skillBySkillId) {
-        this.assignedDate = assignedDate;
-        this.assignee = assignee;
-        this.employeeByCrmd = employeeByCrmd;
-        this.skillBySkillId = skillBySkillId;
+    @Id
+    @Column(name = "ID", nullable = false, precision = 0)
+    public long getId() {
+        return id;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @Fetch(FetchMode.SELECT)
-    @JoinColumn(name = "CRMD", nullable = false)
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Skill_Set skillSet = (Skill_Set) o;
+
+        if (id != skillSet.id) return false;
+        if (assignedDate != null ? !assignedDate.equals(skillSet.assignedDate) : skillSet.assignedDate != null)
+            return false;
+        if (assigneeId != null ? !assigneeId.equals(skillSet.assigneeId) : skillSet.assigneeId != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = assignedDate != null ? assignedDate.hashCode() : 0;
+        result = 31 * result + (assigneeId != null ? assigneeId.hashCode() : 0);
+        result = 31 * result + (int) (id ^ (id >>> 32));
+        return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "CRMD", referencedColumnName = "CRMD", nullable = false)
     public Employee getEmployeeByCrmd() {
         return employeeByCrmd;
     }
@@ -50,9 +74,8 @@ public class Skill_Set {
         this.employeeByCrmd = employeeByCrmd;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @Fetch(FetchMode.SELECT)
-    @JoinColumn(name = "SKILL_ID", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "SKILL_ID", referencedColumnName = "ID", nullable = false)
     public Skill getSkillBySkillId() {
         return skillBySkillId;
     }
@@ -60,8 +83,4 @@ public class Skill_Set {
     public void setSkillBySkillId(Skill skillBySkillId) {
         this.skillBySkillId = skillBySkillId;
     }
-
-    public Skill_Set() {
-    }
-    
 }

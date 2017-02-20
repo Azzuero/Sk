@@ -1,9 +1,10 @@
 package Entity;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-import javax.persistence.*;
 
 @Entity
 public class Employee {
@@ -12,8 +13,7 @@ public class Employee {
     private String position;
 
     @Id
-    @OneToMany(mappedBy = "employeeByCrmd", fetch = FetchType.LAZY)
-    @Fetch(FetchMode.SELECT)
+    @Column(name = "CRMD", nullable = false, length = 10)
     public String getCrmd() {
         return crmd;
     }
@@ -42,12 +42,25 @@ public class Employee {
         this.position = position;
     }
 
-    public Employee() {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Employee employee = (Employee) o;
+
+        if (crmd != null ? !crmd.equals(employee.crmd) : employee.crmd != null) return false;
+        if (ambient != null ? !ambient.equals(employee.ambient) : employee.ambient != null) return false;
+        if (position != null ? !position.equals(employee.position) : employee.position != null) return false;
+
+        return true;
     }
 
-    public Employee(String crmd, String ambient, String position) {
-        this.crmd = crmd;
-        this.ambient = ambient;
-        this.position = position;
+    @Override
+    public int hashCode() {
+        int result = crmd != null ? crmd.hashCode() : 0;
+        result = 31 * result + (ambient != null ? ambient.hashCode() : 0);
+        result = 31 * result + (position != null ? position.hashCode() : 0);
+        return result;
     }
 }

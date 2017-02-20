@@ -1,15 +1,7 @@
 package Util;
 
-import Entity.Employee;
-import Entity.Skill;
-import Entity.Skill_Set;
-
-import java.sql.Date;
-import java.util.HashSet;
-import java.util.Set;
-
 public class Records {
-    public static Employee employee1 = new Employee("crm0033", "JAVA", "JD");
+  /*  public static Employee employee1 = new Employee("crm0033", "JAVA", "JD");
     public static Employee employee2 = new Employee("crm0034", "JAVA", "MD");
     public static Employee employee3 = new Employee("crm0035", "JAVA", "SD");
     public static Employee employee4 = new Employee("crm0036", ".NET", "JD");
@@ -46,7 +38,7 @@ public class Records {
           skill_sets.add(skill_set2);
           skill_sets.add(skill_set3);
         return skill_sets;
-    }
+    }*/
 
 
 }

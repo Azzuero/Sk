@@ -16,7 +16,7 @@ import java.util.Set;
 public class Crud {
 
     public static ComboBox getEmployee() {
-        ComboBox temporaryCombobox = new ComboBox("CRMD");
+        ComboBox temporaryCombobox = new ComboBox();
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         List<Employee> listEmployee = session.createCriteria(Employee.class).list();

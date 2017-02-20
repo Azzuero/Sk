@@ -33,11 +33,16 @@ public class MyUI extends UI {
         List<Employee> list = session.createCriteria(Employee.class).list();
         VerticalLayout Principal_Page = new VerticalLayout();
         //cpp
-
-
         ComboBox comboAsignee = new ComboBox("Asignee CRMD");
         DateField dateSkill = new DateField();
-        Principal_Page.addComponents(Crud.getEmployee(), Crud.getSkill(), comboAsignee, dateSkill);
+        ComboBox Employee = Crud.getEmployee();
+        Employee.addValueChangeListener(e -> {
+            comboAsignee.removeAllItems();
+            for (Employee next : Crud.getAssignee(String.valueOf(e.getProperty().getValue())))
+                comboAsignee.addItems(next.getCrmd());
+
+        });
+        Principal_Page.addComponents(Employee, Crud.getSkill(), comboAsignee, dateSkill);
         Principal_Page.setMargin(true);
         Principal_Page.setSpacing(true);
         session.close();

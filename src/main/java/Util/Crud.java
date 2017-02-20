@@ -7,17 +7,16 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Crud {
 
-    public static ComboBox getEmployee(){
+    public static ComboBox getEmployee() {
         ComboBox temporaryCombobox = new ComboBox("CRMD");
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         List<Employee> listEmployee = session.createCriteria(Employee.class).list();
-        for (Employee next:listEmployee ) {
+        for (Employee next : listEmployee) {
             temporaryCombobox.addItem(next.getCrmd());
         }
 
@@ -37,18 +36,19 @@ public class Crud {
         return temporaryCombobox;
     }*/
 
-    public static ComboBox getSkill(){
+    public static ComboBox getSkill() {
         ComboBox temporaryCombobox = new ComboBox("Skill");
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         List<Skill_Set> listEmployee = session.createCriteria(Skill_Set.class).list();
-        for (Skill_Set next:listEmployee ) {
+        for (Skill_Set next : listEmployee) {
             temporaryCombobox.addItem(next.getAssignedDate());
         }
 
         session.close();
         return temporaryCombobox;
     }
+
     public static void view() throws SQLException {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -56,7 +56,7 @@ public class Crud {
 
         List<Skill_Set> skill_setList = session.createQuery("from SKILL_SET ").list();
         System.out.println("-------- SKILL SET --------");
-        for (Skill_Set next:skill_setList) {
+        for (Skill_Set next : skill_setList) {
           /*  System.out.println("CRMD: " + next.getEmployeeByCrmd().getCrmd());
             System.out.println("Skill: " + next.getSkillBySkillId().getName());
             System.out.println("AssigneeId: " + next.getAssigneeId());
@@ -67,13 +67,14 @@ public class Crud {
 
         session.close();
     }
+
     public static void viewSkill() throws SQLException {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
 
 
         List<Skill> skilsList = session.createQuery(" from SKILL ").list();
-        for (Skill next:skilsList) {
+        for (Skill next : skilsList) {
 
 
         }
@@ -103,6 +104,32 @@ public class Crud {
     }
 
 
-    // public
+    public static List<String> getSkill1() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List<Skill> skills = session.createQuery("from Skill").list();
+        List<Skill> skills1 = session.createQuery("from Skill").list();
+        Collection<Map<String, ?>> collection = new ArrayList<Map<String, ?>>();
+        for (Skill next : skills) {
+            for (Skill next1 : skills1) {
+                Map<String, Object> map = new HashMap<String, Object>();
+                if (next.getParentId() != null && next1.getParentId() != null)
+                    if (next.getId() == next1.getParentId()) {
+                        map.put("Name", next.getName());
+                        map.put("Value", next1.getName());
+                        collection.add(map);
+                    }
+
+            }
+        }
+        List<String> listString = new ArrayList<String>(0);
+        for (Map<String, ?> next12 : collection) {
+            String temp = "";
+            temp = String.valueOf(next12.get("Name")) + String.valueOf(next12.get("Value"));
+            listString.add(temp);
+            System.out.println(temp);
+        }
+        return listString;
+    }
 }
+
 

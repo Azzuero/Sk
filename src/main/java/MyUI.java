@@ -42,11 +42,14 @@ public class MyUI extends UI {
                 comboAsignee.addItems(next.getCrmd());
 
         });
-        Principal_Page.addComponents(Employee, Crud.getSkill(), comboAsignee, dateSkill);
+        ComboBox comboBox = new ComboBox("SKILLLLLLL");
+        comboBox.addItems(Crud.getSkill1());
+        Principal_Page.addComponents(Employee, Crud.getSkill(), comboAsignee, dateSkill, comboBox);
         Principal_Page.setMargin(true);
         Principal_Page.setSpacing(true);
         session.close();
         setContent(Principal_Page);
+        Crud.getSkill1();
     }
 
 

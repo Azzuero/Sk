@@ -14,6 +14,27 @@ public class Utilites {
        return Long.parseLong(input);
    }
 
+    public static String getEmployeePosition(int rank) {
+        String position = null;
+        switch (rank) {
+            case 1:
+                position = "JD";
+                break;
+            case 2:
+                position = "MD";
+                break;
+            case 3:
+                position = "AD";
+                break;
+            case 4:
+                position = "SD";
+                break;
+            default:
+                position = null;
+        }
+        return position;
+    }
+
    public static int getEmployeeRank(String position){
         int rank=0;
         switch (position) {

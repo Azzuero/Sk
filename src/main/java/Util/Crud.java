@@ -79,4 +79,15 @@ public class Crud {
 
         session.close();
     }
+
+    public static void CRUD() {
+        if (getEmployee().getValue() != null) {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            List<Employee> employeeList = session.createQuery("from Employee").list();
+            for (Employee employee : employeeList) {
+                if (Utilites.getEmployeeRank(employee.getPosition()) >)
+            }
+
+        }
+    }
 }

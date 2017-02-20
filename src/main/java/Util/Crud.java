@@ -104,7 +104,7 @@ public class Crud {
     }
 
 
-    public static List<String> getSkill1() {
+    /*public static List<String> getSkill1() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         List<Skill> skills = session.createQuery("from Skill").list();
         List<Skill> skills1 = session.createQuery("from Skill").list();
@@ -129,6 +129,36 @@ public class Crud {
             System.out.println(temp);
         }
         return listString;
+    }*/
+    public static List<Skill> getSkills(){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List<Skill> inputSkills = session.createQuery("from Skill").list();
+        List<Skill> input1Skills = session.createQuery("from Skill").list();
+        List<Skill> outputSkils = new ArrayList<Skill>(0);
+        for (Skill next: inputSkills)
+            for(Skill next1:input1Skills){
+            if(numberOrNot(next.getName()))
+                if(next.getParentId()==next1.getId()){
+                outputSkils.add(next1);
+                System.out.println(next1.getName());
+            }
+        }
+
+        session.close();
+        return outputSkils;
+    }
+
+    public static boolean numberOrNot(String input)
+    {
+        try
+        {
+            Integer.parseInt(input);
+        }
+        catch(NumberFormatException ex)
+        {
+            return false;
+        }
+        return true;
     }
 }
 
